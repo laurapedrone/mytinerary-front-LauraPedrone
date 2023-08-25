@@ -8,7 +8,7 @@ const Footer = () => {
 
                 </div>
             </div>
-            <div class="card-footer">
+            <div className="card-footer">
                 <p>
                     <span>©&nbsp;</span>
                     <span>2023</span>

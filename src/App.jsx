@@ -5,6 +5,8 @@ import HomeM from './pages/Home/HomeM'
 import LayoutMain from './pages/Layout/LayoutMain'
 import Cities from './pages/Cities/Cities'
 import CityDetail from './pages/CityDetail/CityDetail'
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const router = createBrowserRouter([
   {

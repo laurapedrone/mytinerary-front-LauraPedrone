@@ -14,7 +14,7 @@
   max-width: 850px;
 }
 
-.card-image {
-  width: 100%;
-  margin-right: 20px;
+.cardimage {
+  object-fit: cover;
+  aspect-ratio: 1/1;
 }

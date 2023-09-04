@@ -1,9 +1,5 @@
-.container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .paragraph_main2 {
+
+  .paragraphmain2 {
     text-align: center;
     color: yellow;
   }
@@ -17,8 +13,7 @@
     text-transform: uppercase;
   }
   
-  .fund_main2 {
-    background-image: url(./public/Assets/images/imagen_citydetail.jpg);
+  .fundmain2 {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
@@ -33,10 +28,10 @@
     margin: 0 0 50px;
   }
   
-  .form-box2 {
+  .formbox2 {
     position: relative;
-    width: 449px;
-    height: 143px;
+    width: 540px;
+    height: 240px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 20px;

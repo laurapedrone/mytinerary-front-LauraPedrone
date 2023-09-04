@@ -5,6 +5,7 @@ import 'react-multi-carousel/lib/styles.css'
 import { Outlet } from 'react-router-dom'
 
 
+
 const LayoutMain = () => {
     return (
         <div>

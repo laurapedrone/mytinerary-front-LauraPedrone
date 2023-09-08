@@ -5,7 +5,7 @@ import './cardCities.css'
 import { FcNext } from "react-icons/fc"
 
 const CardCities = ({ data }) => {
-    const {_id, name, country, flag, image, description, excursion_price } = data
+    const {_id, name, country, flag, image } = data
 
     return (
         <div className="col">

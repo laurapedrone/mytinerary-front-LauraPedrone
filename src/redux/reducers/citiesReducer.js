@@ -6,16 +6,16 @@ const initialState = {
   filterCity: [],
   selectedValue: "",
   name: "",
+  city: [],
   itineraries: [],
 };
 
 const citiesReducer = createReducer(initialState, (builder) => {
-  builder.addCase(actions.save_cities, (store, action) => {
+  builder.addCase(actions.city_render.fulfilled, (store, action) => {
     return {
       ...store,
-      // cities: [...store.cities, action.payload]
-      allCities: action.payload.cities,
-      filterCity: action.payload.cities,
+      allCities: action.payload,
+      filterCity: action.payload,
     };
   }),
     builder.addCase(actions.city_input, (store, action) => {
@@ -25,10 +25,16 @@ const citiesReducer = createReducer(initialState, (builder) => {
         name: action.payload.name,
       };
     }),
-    builder.addCase(actions.save_itineraries, (store, action) => {
+    builder.addCase(actions.get_city.fulfilled, (store, action) => {
       return {
         ...store,
-        itineraries: action.payload.itineraries,
+        city: action.payload,
+      };
+    }),
+    builder.addCase(actions.get_itineraries.fulfilled, (store, action) => {
+      return {
+        ...store,
+        itineraries: action.payload,
       };
     });
 });

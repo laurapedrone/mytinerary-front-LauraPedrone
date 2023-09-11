@@ -1,35 +1,31 @@
-import { createAction } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
+import { getAllCities, getOneCity, getItineries } from "../../Services/cityService";
 
-const save_cities = createAction(
-    'save_cities', ({cities})=>{
-        return{
-            payload:{
-                cities
-            }
-        }
-    }
-)
+const city_render = createAsyncThunk("cities_render", async () => {
+  const cities = getAllCities();
+  return cities;
+});
 
-const city_input = createAction(
-    "city_input", (selectedValue,name)=>{
-        return {
-            payload:{
-                selectedValue,
-                name,
-            }
-        }
-    }
-)
+const city_input = createAction("city_input", (selectedValue, name) => {
+  return {
+    payload: {
+      selectedValue,
+      name,
+    },
+  };
+});
 
-const save_itineraries = createAction(
-    'save_itineraries', ({itineraries})=>{
-        return{
-            payload:{
-                itineraries
-            }
-        }
-    }
-)
+const get_city = createAsyncThunk("get_city", async (id) => {
+  const city = getOneCity(id);
+  return city;
+});
 
-const actions = {save_cities, city_input, save_itineraries}
-export default actions
+const get_itineraries = createAsyncThunk("get_itineraries", async (id) => {
+    const itineraries = getItineries(id);
+    return itineraries;
+  });
+
+
+const actions = { city_render, city_input, get_city, get_itineraries };
+
+export default actions;

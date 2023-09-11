@@ -2,37 +2,28 @@ import './cityDetail.css'
 import React, { useEffect, useState } from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Form, Button } from "react-bootstrap"
-import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import Container from '@mui/material/Container';
 import CardItineraries from '../../components/CardsItineraries/CardItineraries'
 import { useSelector, useDispatch } from 'react-redux'
-import cities_actions from "../../redux/actions/citiesAction.js"
+import actions from "../../redux/actions/citiesAction.js"
 
-const { save_cities, save_itineraries } = cities_actions
+const { get_city, get_itineraries } = actions
 
 const CityDetail = () => {
-    // const [city, setCities] = useState({})
-    // const [itinerary, setItinerary] = useState([])
+
     const { id } = useParams()
-    const citiesStore = useSelector((store) => store.cities.allCities)
+    const dispatch = useDispatch()
+
+    const citiesStore = useSelector((store) => store.cities.city)
     console.log(citiesStore)
     const tineraryStore = useSelector((store) => store.cities.itineraries)
     console.log(tineraryStore)
-    const dispatch = useDispatch()
-
-
 
     useEffect(() => {
-        axios('http://localhost:3000/api/cities/' + id)
-            .then(res => {
-                // setCities(res.data.response)
-                // setItinerary(res.data.response.itinerary)
-                dispatch(save_cities({ cities: res.data.response }))
-                dispatch(save_itineraries({ itineraries: res.data.response.itinerary }))
-            })
-            .catch(error => console.error(error))
-    }, [dispatch])
+                dispatch(get_city(id))
+                dispatch(get_itineraries(id))
+    }, [id,dispatch])
 
     return (
         <>

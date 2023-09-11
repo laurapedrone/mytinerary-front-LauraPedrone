@@ -1,52 +1,23 @@
 import React, { useEffect, useState, useRef } from 'react'
 import CardCities from '../../components/CardCities/CardCities'
-import axios from 'axios'
 import './cities.css'
 import Container from '@mui/material/Container';
 import { FcSearch } from "react-icons/fc"
 import { useSelector, useDispatch } from "react-redux"
-import cities_actions from "../../redux/actions/citiesAction.js"
+import actions from "../../redux/actions/citiesAction.js"
 
-const { save_cities, city_input } = cities_actions
+const { city_render, city_input } = actions
 
 const Cities = () => {
-  // const params = useParams()
-  // console.log(params)
-
-  // const aux = useSelector(store => store)
-  // console.log(aux)
 
   const citiesStore = useSelector((store) => store.cities)
   console.log(citiesStore)
   const dispatch = useDispatch()
 
-  // const [cities, setCities] = useState([])
-  // const [citiesAux, setCitiesAux] = useState([])
-  // const inputRef = useRef()
-
   useEffect(() => {
-    // if(cities.length===0){
-    axios('http://localhost:3000/api/cities')
-      .then(res => {
-        // setCities(res.data.response)
-        // setCitiesAux(res.data.response)
-        dispatch(save_cities({ cities: res.data.response }))
-      })
-      .catch(error => console.error(error))
-    // }    
+    dispatch(city_render())   
   }, [dispatch])
 
-  // function handleSearch(city) {
-  //   const cityValue = inputRef.current.value.toLowerCase().trim()
-
-  //   if (city?.key === "Enter" || city.type === 'click') {
-  //     const cityfilter = (cities) => cities.name.toLowerCase().trim().startsWith(cityValue)
-  //     const allCityFiter = citiesAux.filter(cityfilter)
-  //     setCities(allCityFiter)
-  //   } else if (cityValue === '') {
-  //     setCities(citiesAux)
-  //   }
-  // }
 
   const handleSearch = (e) => {
     dispatch(city_input(citiesStore.selectedValue, e.target.value))

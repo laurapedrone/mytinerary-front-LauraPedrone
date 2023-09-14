@@ -40,8 +40,10 @@ const NavbarMain = () => {
                             </Nav.Link>
                         </LinkContainer>
                     </Nav>
-                    <Form className="d-flex">      
-                        <Button variant="outline-info"><FontAwesomeIcon icon={faCircleUser}/> Login</Button>
+                    <Form className="d-flex">
+                        <LinkContainer to="/signup">
+                            <Button variant="outline-info"><FontAwesomeIcon icon={faCircleUser} /> Login</Button>
+                        </LinkContainer>
                     </Form>
                 </Navbar.Collapse>
             </Container>

@@ -4,6 +4,10 @@ const citiesQueries = axios.create({
   baseURL: "http://localhost:3000/api/cities",
 });
 
+export const server = axios.create({
+  baseURL: "http://localhost:3000/api",
+});
+
 export const getAllCities = async (queryParams = "") => {
   try {
     const response = await citiesQueries(queryParams);

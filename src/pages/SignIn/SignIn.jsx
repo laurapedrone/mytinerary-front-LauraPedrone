@@ -10,28 +10,31 @@ import {
 } from 'mdb-react-ui-kit';
 import { LinkContainer } from 'react-router-bootstrap';
 import GoogleLoginButtom from '../../components/GoogleLoginButtom/GoogleLoginButtom';
-
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/actions/authAction';
 
 const SignIn = () => {
 
     const inputEmail = useRef()
     const inputPass = useRef()
+    const dispatch = useDispatch()
 
-    const handleSubmitData = async () => {
+    const handleSubmitData = async (e) => {
+        e.preventDefault()
         const userData = {
             email: inputEmail.current.value,
             password: inputPass.current.value
         }
-        const res = await server.get('/auth/in', userData)
+        const res = await server.post('/auth/in', userData)
         console.log(res)
-
+        dispatch(login(res.data))
     }
 
     const handleSubmitGoogle = async (data) => {
         const userData = { ...data }
-        if (userData.terms) delete userData.terms
-        const res = await server.get('/auth/in', userData)
+        const res = await server.post('/auth/in', userData)
         console.log(res)
+        dispatch(login(res.data))
     }
 
     return (

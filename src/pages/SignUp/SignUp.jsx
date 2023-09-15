@@ -15,8 +15,11 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'
 import jwtDecode from 'jwt-decode';
 import GoogleLoginButtom from '../../components/GoogleLoginButtom/GoogleLoginButtom'
+import { useDispatch } from 'react-redux';
+import { signup } from '../../redux/actions/authAction';
 
-const SignUp = ({fn}) => {
+
+const SignUp = () => {
 
     const [data, setData] = useState({
         email: "",
@@ -28,6 +31,8 @@ const SignUp = ({fn}) => {
         verified: true,
         terms: false
     })
+
+    const dispatch = useDispatch()
 
     const handleChangeData = (e) => {
         setData(prevState => {
@@ -41,8 +46,9 @@ const SignUp = ({fn}) => {
         const userData = { ...data }
         if (userData.terms) {
             delete userData.terms
-            const res = await server.post('/auth', userData)
+            const res = await server.post('/auth/up', userData)
             console.log(res)
+            dispatch(signup(res.data))
         }
     }
 
@@ -50,8 +56,9 @@ const SignUp = ({fn}) => {
         const userData = { ...data }
         if (userData.terms) {
             delete userData.terms
-            const res = await server.post('/auth', userData)
+            const res = await server.post('/auth/up', userData)
             console.log(res)
+            dispatch(signup(res.data))
         }
     }
 

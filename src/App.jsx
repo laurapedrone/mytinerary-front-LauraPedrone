@@ -13,7 +13,7 @@ import { useEffect } from 'react'
 import jwtDecode from 'jwt-decode'
 import SignUp from './pages/SignUp/signUp'
 import { useDispatch } from "react-redux"
-import { login} from './redux/actions/authAction'
+import { authenticate, login} from './redux/actions/authAction'
 import { server } from './Services/cityService'
 
 const router = createBrowserRouter(
@@ -47,6 +47,11 @@ const router = createBrowserRouter(
 
 function App() {
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(authenticate())
+  },[])
+
   useGoogleOneTapLogin({
     onSuccess: async credentialResponse => {
       console.log(credentialResponse);
@@ -55,7 +60,7 @@ function App() {
         email:infoUser.email,
         password: "Admin123*"
       }
-      const res = await server.get('/auth/in', userData)
+      const res = await server.post('/auth/in', userData)
       console.log(res)
       dispatch(login(res.data))
     },
@@ -63,11 +68,6 @@ function App() {
       console.log('Login Failed');
     },
   });
-
-  // useEffect(()=>{
-  //   oneTapLogin()
-  // },[])
-
   return (
     <RouterProvider router={router} />
   )

@@ -2,7 +2,7 @@ import { createReducer } from "@reduxjs/toolkit";
 import { login , signup, authenticate} from "../actions/authAction";
 
 const initialState = {
-  user: {},
+  user: null,
   token: null,
   status: "offline",
 };
@@ -14,10 +14,12 @@ const authReducer = createReducer(initialState, (builder) =>
     return newState
   })
   .addCase(signup,(state, action)=>{
-    const newState = {...state}
+    const newState = {...state, ...action.payload}
+    return newState
   })
   .addCase(authenticate.fulfilled, (state, action)=>{
-    const newState = {...state}
+    const newState = {...state, ...action.payload}
+    return newState
   })
 );
 

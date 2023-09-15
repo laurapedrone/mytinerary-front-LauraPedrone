@@ -7,10 +7,15 @@ import Navbar from 'react-bootstrap/Navbar';
 import { LinkContainer } from 'react-router-bootstrap';
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import authReducer from '../../redux/reducers/authReducer';
 
 
 const NavbarMain = () => {
+    // const {user} = useSelector(s=>s.authReducer)
+    // const{show,setShow} = useState(false)
+
     return (
         <Navbar expand="lg" className="bg-body-tertiary found" fixed="top">
             <Container fluid>
@@ -40,10 +45,18 @@ const NavbarMain = () => {
                             </Nav.Link>
                         </LinkContainer>
                     </Nav>
+
                     <Form className="d-flex">
-                        <LinkContainer to="/signup">
-                            <Button variant="outline-info"><FontAwesomeIcon icon={faCircleUser} /> Login</Button>
+                        <LinkContainer to="/signin">
+                            <Button variant="outline-info"><FontAwesomeIcon icon={faCircleUser} /> Log in</Button>
                         </LinkContainer>
+                        <LinkContainer to="/signup">
+                            <Button variant="outline-info"><FontAwesomeIcon icon={faCircleUser} /> Log Up</Button>
+                        </LinkContainer>
+                        {/* {
+                            user?.photoURL &&
+                            <img src={user.photoURL} alt='profile photo' className='w-8 h-8 rounded-full' />
+                        } */}
                     </Form>
                 </Navbar.Collapse>
             </Container>
